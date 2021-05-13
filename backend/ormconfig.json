@@ -4,5 +4,9 @@
   "port": 3306,
   "username": "root",
   "password": "",
-  "database": "cruddna"
+  "database": "cruddna",
+  "migrations": ["./src/database/migrations/*.ts"],
+  "cli": {
+    "migrationsDir": "./src/database/migrations"
+  }
 }
