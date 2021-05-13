@@ -1,10 +1,9 @@
-import express, { response } from "express";
+import express from 'express';
+import routes from './routes';
 
 const app = express();
 
-app.get("/", (req, res) => {
-  return res.json({ message: "hello guy!" });
-});
+app.use(routes);
 
 let port = 3333;
 
