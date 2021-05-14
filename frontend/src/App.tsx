@@ -1,7 +1,7 @@
+import Routes from './Routes';
+
 function App() {
-  return (
-    <h1>Comece aqui!</h1>
-  );
+  return <Routes />;
 }
 
 export default App;
