@@ -5,8 +5,10 @@
   "username": "root",
   "password": "",
   "database": "cruddna",
+  "entities": ["./src/models/*.ts"],
   "migrations": ["./src/database/migrations/*.ts"],
   "cli": {
     "migrationsDir": "./src/database/migrations"
-  }
+  },
+  "synchronize": false
 }

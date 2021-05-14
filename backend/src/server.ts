@@ -5,6 +5,7 @@ import './database';
 
 const app = express();
 
+app.use(express.json());
 app.use(routes);
 
 let port = 3333;
