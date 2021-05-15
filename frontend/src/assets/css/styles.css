@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+
+:root {
+  --mainColor: #1cb698;
+}
+
+body,
+#root {
+  background: #1e2326;
+  font-family: "Roboto", sans-serif;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.h100 {
+  height: 100vh !important;
+}
+
+.card-login {
+  width: 550px;
+  height: 350px;
+  background: #252a2e;
+  box-shadow: -1rem 0 3rem rgb(0 0 0 / 20%);
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+
+.card-login h1 {
+  text-align: center;
+  font-family: "Righteous", cursive;
+  margin-top: 10px;
+  color: var(--mainColor);
+  font-size: 50px;
+}
+
+.card-login .btn-primary {
+  background-color: var(--mainColor);
+  border-color: var(--mainColor);
+  width: 200px;
+}
+
+.bg-login {
+  background-image: url(../img/bg-login.jpg);
+  background-size: cover;
+  background-position: center;
+}
