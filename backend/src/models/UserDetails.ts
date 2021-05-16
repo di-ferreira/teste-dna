@@ -21,7 +21,7 @@ class UserDetails {
   website: string;
 
   @Column()
-  adress: string;
+  address: string;
 
   @Column()
   status: string;
