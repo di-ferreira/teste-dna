@@ -1,16 +1,12 @@
 import { Link } from "react-router-dom";
-import ImageProfile from "../../assets/img/hero.png";
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function Profile() {
   return (
     <div className="justify-content-center align-items-center flex-column d-flex w-100 h100">
-      <div className="d-flex align-items-center pb-1 card-profile-container">
-        <div className="card-profile">
-          <div className="profile-content-image">
-            <img src={ImageProfile} alt="Profile" />
-          </div>
+      <div className="d-flex align-items-center  pb-1 card-profile-container">
+        <div className="card-profile d-flex align-items-center justify-content-center">
           <h1 className="title-custom mt-3">Diego Ferreira</h1>
           <p>Front End Developer</p>
         </div>
