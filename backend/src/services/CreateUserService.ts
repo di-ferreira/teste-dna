@@ -14,6 +14,19 @@ interface RequestUser {
   status: string;
 }
 
+interface RequestIdUser {
+  idUser: string;
+}
+
+interface UserFull {
+  name: string;
+  email: string;
+  birthdate: Date;
+  phone: string;
+  website: string;
+  address: string;
+  status: string;
+}
 class CreateUserService {
   public async saveUser({
     name,

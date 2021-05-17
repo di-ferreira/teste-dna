@@ -54,11 +54,14 @@ usersRoutes.get('/', verifyAuth, async (request, response) => {
 
 usersRoutes.get('/:id', verifyAuth, async (request, response) => {
   const userId = request.params.id;
-  const user = getRepository(User);
+  const user = getRepository(UserDetails);
 
-  const getUser = await user.findOne(userId, {
-    select: ['id', 'name', 'email'],
+  const getUser = await user.findOne({
+    where: { userId },
+    relations: ['user'],
   });
+
+  delete getUser?.user.password;
 
   return response.json(getUser);
 });
