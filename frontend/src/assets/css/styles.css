@@ -5,6 +5,7 @@
   --mainWarning: rgb(248, 145, 11);
   --mainDanger: rgb(218, 6, 6);
   --mainSuccess: rgb(108, 185, 248);
+  --mainGreat: rgb(53, 175, 74);
   --mediumDark: #252a2e;
   --Dark: #1e2326;
   --white: #ffffff;
@@ -183,7 +184,7 @@ label.input-custom {
 
 .user-list-item-status[data-freelancer],
 .card-profile-status[data-freelancer] {
-  background-color: var(--mainWarning);
+  background-color: var(--mainGreat);
 }
 
 .card-profile-info-details .card-profile-status {

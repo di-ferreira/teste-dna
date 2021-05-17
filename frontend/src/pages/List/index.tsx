@@ -41,7 +41,7 @@ function List() {
                 <p className="user-list-item-skills">Front End Developer</p>
               </div>
               <span className="user-list-item-status" data-unemployed>
-                Employed
+                Unemployed
               </span>
             </Link>
           </li>
@@ -60,7 +60,7 @@ function List() {
                 <p className="user-list-item-skills">Front End Developer</p>
               </div>
               <span className="user-list-item-status" data-freelancer>
-                Employed
+                Freelancer
               </span>
             </Link>
           </li>
