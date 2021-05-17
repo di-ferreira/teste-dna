@@ -1,14 +1,15 @@
 import {
   Column,
+  Entity,
   JoinColumn,
   OneToOne,
-  PrimaryColumn,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import User from './User';
 
+@Entity('users_details')
 class UserDetails {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn('increment')
   id: number;
 
   @Column()
@@ -25,9 +26,6 @@ class UserDetails {
 
   @Column()
   status: string;
-
-  @Column()
-  avatar: string;
 
   @Column()
   userId: number;

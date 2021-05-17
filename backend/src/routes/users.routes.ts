@@ -2,24 +2,41 @@ import { Router } from 'express';
 import CreateUserService from '../services/CreateUserService';
 
 import { getRepository } from 'typeorm';
+
 import User from '../models/User';
+import UserDetails from '../models/UserDetails';
+
 import verifyAuth from '../middlewares/verifyAuth';
 
 const usersRoutes = Router();
 
 usersRoutes.post('/', async (request, response) => {
   try {
-    const { name, email, password } = request.body;
-
-    const createUser = new CreateUserService();
-
-    const user = await createUser.execute({
+    const {
       name,
       email,
       password,
+      birthdate,
+      phone,
+      website,
+      address,
+      status,
+    } = request.body;
+
+    const createUser = new CreateUserService();
+
+    const user = await createUser.saveUser({
+      name,
+      email,
+      password,
+      birthdate,
+      phone,
+      website,
+      address,
+      status,
     });
 
-    delete user.password;
+    // delete user.password;
 
     return response.json(user);
   } catch (err) {
@@ -28,9 +45,9 @@ usersRoutes.post('/', async (request, response) => {
 });
 
 usersRoutes.get('/', verifyAuth, async (request, response) => {
-  const users = getRepository(User);
+  const users = getRepository(UserDetails);
 
-  const getUsers = await users.find({ select: ['id', 'name', 'email'] });
+  const getUsers = await users.find({ relations: ['user'] });
 
   return response.json(getUsers);
 });
