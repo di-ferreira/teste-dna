@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Register() {
   return (
     <div className="justify-content-center d-flex w-100 h100">
@@ -83,8 +85,14 @@ function Register() {
         <div className="row px-5 mt-3">
           <div className="col-md-6 offset-md-3">
             <button type="submit" className="w-100 btn btn-custom-primary">
-              Enviar
+              Send
             </button>
+            <span className="login-account w-100 px-3">
+              Already have an account
+            <Link to="/login">
+                click here!
+            </Link>
+            </span>
           </div>
         </div>
       </div>

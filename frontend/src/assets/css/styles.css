@@ -171,18 +171,30 @@ label.input-custom {
   -o-border-radius: 4px;
 }
 
-.user-list-item-status[data-employed] {
+.user-list-item-status[data-employed],
+.card-profile-status[data-employed] {
   background-color: var(--mainSuccess);
 }
 
-.user-list-item-status[data-unemployed] {
+.user-list-item-status[data-unemployed],
+.card-profile-status[data-unemployed] {
   background-color: var(--mainDanger);
 }
 
-.user-list-item-status[data-freelancer] {
+.user-list-item-status[data-freelancer],
+.card-profile-status[data-freelancer] {
   background-color: var(--mainWarning);
 }
 
+.card-profile-info-details .card-profile-status {
+  display: flex;
+  align-items: center;
+  height: 25px;
+  padding: 0 10%;
+  color: var(--white);
+  font-size: 13px;
+  border-radius: 4px;
+}
 .card-profile,
 .card-profile-info {
   background-color: var(--mediumDark);
@@ -269,7 +281,7 @@ label.input-custom {
   width: 800px;
   height: auto;
   padding: 25px 5px;
-  margin: 150px 0;
+  margin-bottom: 20px;
 }
 
 .input-custom .input-custom-file {
@@ -312,14 +324,32 @@ label.input-custom {
   height: 350px;
 }
 
+.create-account,
+.login-account {
+  font-size: 14px;
+}
+
+.create-account a,
+.login-account a {
+  color: var(--mainColor);
+}
+
+.login-account a {
+  margin-left: 10px;
+}
+
+.create-account a {
+  display: block;
+}
+
 .btn-custom-primary,
 .btn-custom-primary:focus,
 .btn-custom-primary:active {
   background-color: var(--mainColor) !important;
   border-color: var(--mainColor) !important;
-  width: 200px;
+  width: 150px;
   color: var(--white) !important;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .btn-custom-primary:hover {

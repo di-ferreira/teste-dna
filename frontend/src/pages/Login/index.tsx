@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 function Login() {
   return (
     <div className="justify-content-center align-items-center d-flex w-100 h100 bg-login">
@@ -14,9 +15,17 @@ function Login() {
             className="input-custom form-group w-100"
             placeholder="Password"
           />
-          <button type="submit" className="btn btn-custom-primary">
-            Enviar
+          <div className="d-flex w-100 align-items-center justify-content-between">
+            <span className="create-account">
+              don't have an account yet?
+            <Link to="/register">
+                click here!
+            </Link>
+            </span>
+            <button type="submit" className="btn btn-custom-primary">
+              Enviar
           </button>
+          </div>
         </div>
       </div>
     </div>

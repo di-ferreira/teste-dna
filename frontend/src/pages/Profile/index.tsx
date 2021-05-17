@@ -1,8 +1,12 @@
+import { Link } from "react-router-dom";
 import ImageProfile from "../../assets/img/hero.png";
+import { faSignInAlt } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 function Profile() {
   return (
-    <div className="justify-content-center d-flex w-100 h100">
-      <div className="d-flex align-items-center pb-4 card-profile-container">
+    <div className="justify-content-center align-items-center flex-column d-flex w-100 h100">
+      <div className="d-flex align-items-center pb-1 card-profile-container">
         <div className="card-profile">
           <div className="profile-content-image">
             <img src={ImageProfile} alt="Profile" />
@@ -33,11 +37,18 @@ function Profile() {
               123 London, UK Job
             </li>
             <li>
-              <span>Status</span> FREELANCE
+              <span>Status</span>
+              <span className="card-profile-status" data-employed>
+                Employed
+              </span>
             </li>
           </ul>
         </div>
       </div>
+      <Link to="/" className="btn btn-custom-primary d-flex justify-content-center">
+        <FontAwesomeIcon icon={faSignInAlt} rotation={180} size="lg" className="mr-2" />
+          Go Back
+        </Link>
     </div>
   );
 }
