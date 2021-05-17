@@ -2,6 +2,9 @@
 
 :root {
   --mainColor: #1cb698;
+  --mainWarning: rgb(248, 145, 11);
+  --mainDanger: rgb(218, 6, 6);
+  --mainSuccess: rgb(108, 185, 248);
   --mediumDark: #252a2e;
   --Dark: #1e2326;
   --white: #ffffff;
@@ -23,6 +26,14 @@ body,
 
 .w-90 {
   width: 90% !important;
+}
+
+.w-80 {
+  width: 80% !important;
+}
+
+.w-65 {
+  width: 65% !important;
 }
 
 .title-custom {
@@ -57,6 +68,116 @@ select.input-custom {
 label.input-custom {
   display: flex;
   align-items: center;
+}
+
+.user-list-container {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  width: 100%;
+  align-items: center;
+}
+
+.user-list-item:first-child {
+  margin-top: 0px !important;
+}
+
+.user-list-item {
+  position: relative;
+  background-color: var(--mediumDark);
+  height: 120px;
+  margin: 20px 0;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+.user-list-item a {
+  display: flex !important;
+  align-items: center !important;
+}
+.user-list-item a:hover {
+  text-decoration: none;
+}
+
+.user-list-item-info {
+  text-decoration: none;
+  color: var(--white);
+  margin-right: 10% !important;
+  transition: color ease 0.3s;
+  -webkit-transition: color ease 0.3s;
+  -moz-transition: color ease 0.3s;
+  -ms-transition: color ease 0.3s;
+  -o-transition: color ease 0.3s;
+}
+
+.user-list-item:hover .user-list-item-info {
+  text-decoration: none !important;
+  color: var(--mainColor);
+  transition: color ease 0.3s;
+  -webkit-transition: color ease 0.3s;
+  -moz-transition: color ease 0.3s;
+  -ms-transition: color ease 0.3s;
+  -o-transition: color ease 0.3s;
+}
+
+.user-list-item:hover .user-list-item-container-image {
+  box-shadow: 0px 0px 12px var(--mainColor);
+  transition: box-shadow ease 0.3s;
+  -webkit-transition: box-shadow ease 0.3s;
+  -moz-transition: box-shadow ease 0.3s;
+  -ms-transition: box-shadow ease 0.3s;
+  -o-transition: box-shadow ease 0.3s;
+}
+
+.user-list-item-container-image {
+  position: absolute;
+  width: 145px;
+  border: solid 6px var(--mainColor);
+  overflow: hidden;
+  left: -50px;
+  top: -10%;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+.user-list-item-container-image .user-list-item-image {
+  width: 100%;
+}
+
+.user-list-item-status {
+  position: absolute;
+  top: 4px;
+  right: -50px;
+  display: flex;
+  align-items: center;
+  height: 25px;
+  padding: 0 2%;
+  color: var(--white);
+  font-size: 13px;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+}
+
+.user-list-item-status[data-employed] {
+  background-color: var(--mainSuccess);
+}
+
+.user-list-item-status[data-unemployed] {
+  background-color: var(--mainDanger);
+}
+
+.user-list-item-status[data-freelancer] {
+  background-color: var(--mainWarning);
 }
 
 .input-custom .input-custom-file {
