@@ -30,42 +30,66 @@ class UserStore {
     status: "unemployed",
   };
 
-  logged: Boolean = false;
-
   constructor() {
     makeObservable(this, {
       users: observable,
       loginUser: action,
       logoutUser: action,
       getUser: action,
+      getUsers: action,
       isLogged: computed,
     });
   }
 
+  get isLogged() {
+    return Boolean(localStorage.getItem("@DNA:isLogged"));
+  }
+
   loginUser = (req: UserLogin) => {
-    api.post("/sessions", req).then(async (response) => {
-      const user = await response.data;
-      const token = user.token;
+    api.post("/sessions", req).then(async (response: any) => {
+      const data = await response.data;
+      const token = data.token;
+      const user = data.user;
+      console.log(data);
       api.defaults.headers.common["Authorization"] = "Bearer " + token;
-      this.logged = true;
+      localStorage.setItem("@DNA:token", token);
+      localStorage.setItem("@DNA:user", JSON.stringify(user));
+      localStorage.setItem("@DNA:isLogged", "true");
     });
   };
 
   logoutUser = () => {
-    api.defaults.headers.common["Authorization"] = "";
-    this.logged = false;
+    api.defaults.headers.common["Authorization"] = undefined;
+    localStorage.removeItem("@DNA:token");
+    localStorage.removeItem("@DNA:user");
+    localStorage.removeItem("@DNA:isLogged");
   };
 
   getUser = (idUser: number) => {
-    api.get(`/users/${idUser}`).then(async (response) => {
+    const token = localStorage.getItem("@DNA:token");
+
+    if (token) {
+      api.defaults.headers.common["Authorization"] = "Bearer " + token;
+    }
+
+    api.get(`/users/${idUser}`).then(async (response: any) => {
       const users = await response.data;
-      console.log(users);
+      return users;
     });
   };
 
-  get isLogged() {
-    return this.logged;
-  }
+  getUsers = () => {
+    const token = localStorage.getItem("@DNA:token");
+
+    if (token) {
+      api.defaults.headers.common["Authorization"] = "Bearer " + token;
+    }
+    api.get(`/users/`).then(async (response: any) => {
+      const users = await response.data;
+      console.log(users);
+      return users;
+    });
+  };
 }
 
 export default createContext(new UserStore());

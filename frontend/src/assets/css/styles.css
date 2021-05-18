@@ -171,18 +171,18 @@ label.input-custom {
   -o-border-radius: 4px;
 }
 
-.user-list-item-status[data-employed],
-.card-profile-status[data-employed] {
+.user-list-item-status[data-status="Employed"],
+.card-profile-status[data-status="Employed"] {
   background-color: var(--mainSuccess);
 }
 
-.user-list-item-status[data-unemployed],
-.card-profile-status[data-unemployed] {
+.user-list-item-status[data-status="Unemployed"],
+.card-profile-status[data-status="Unemployed"] {
   background-color: var(--mainDanger);
 }
 
-.user-list-item-status[data-freelancer],
-.card-profile-status[data-freelancer] {
+.user-list-item-status[data-status="Freelancer"],
+.card-profile-status[data-status="Freelancer"] {
   background-color: var(--mainGreat);
 }
 

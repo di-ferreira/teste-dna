@@ -1,6 +1,6 @@
 import React from "react";
-import { BrowserRouter, Switch } from "react-router-dom";
-import Route from "./Route";
+import { BrowserRouter, Switch } from 'react-router-dom';
+import CustomRoute from './Route'
 import List from "../pages/List";
 import Login from "../pages/Login";
 import Profile from "../pages/Profile";
@@ -10,10 +10,10 @@ const Routes: React.FC = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/" exact component={List} isPrivate />
-        <Route path="/profile" component={Profile} isPrivate />
-        <Route path="/login" component={Login} isPrivate={false} />
-        <Route path="/register" component={Register} isPrivate={false} />
+        <CustomRoute path="/" exact component={List} isPrivate />
+        <CustomRoute path="/profile/:id" component={Profile} isPrivate />
+        <CustomRoute path="/login" component={Login} />
+        <CustomRoute path="/register" component={Register} />
       </Switch>
     </BrowserRouter>
   );

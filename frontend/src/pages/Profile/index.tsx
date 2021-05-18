@@ -1,8 +1,32 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import api from "../../services/api";
 
 function Profile() {
+  //captura id do usuario
+  const id = useParams();
+
+  const [user, setUser] = useState<any[]>();
+
+  useEffect(() => {
+    const token = localStorage.getItem("@DNA:token");
+
+    if (token) {
+      api.defaults.headers.common["Authorization"] = "Bearer " + token;
+    }
+
+    api.get(`/users/${id}`).then((response: { data: any; }) => {
+      const usersData = response.data;
+
+      console.log(response)
+      // setUser(usersData);
+    });
+
+  }, [])
+
+
   return (
     <div className="justify-content-center align-items-center flex-column d-flex w-100 h100">
       <div className="d-flex align-items-center  pb-1 card-profile-container">

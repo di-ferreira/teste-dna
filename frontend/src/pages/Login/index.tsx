@@ -1,25 +1,34 @@
-import { observer } from "mobx-react-lite";
-import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { observer } from 'mobx-react-lite';
+import { useContext, useState, useEffect } from 'react';
+import { Link, useHistory } from "react-router-dom";
 import UserStore from "../../stores/UserStore";
 import { UserLogin } from "../../stores/UserStore";
 
 function Login() {
   const userStore = useContext(UserStore);
-  const { loginUser } = userStore;
+  const { loginUser, isLogged } = userStore;
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorLogin, setErrorLogin] = useState(false);
 
-  const validationLogin = (data: UserLogin) => {
+  const history = useHistory();
+
+  const validationLogin = async (data: UserLogin) => {
     if (data.password !== "" || data.email !== "") {
-      loginUser(data);
       setErrorLogin(false);
+      loginUser(data);
     } else {
       setErrorLogin(true);
+      return;
     }
   };
+
+  useEffect(() => {
+    if (isLogged) {
+      history.push('/')
+    }
+  }, [isLogged, history]);
 
   return (
     <div className="justify-content-center align-items-center d-flex w-100 h100 bg-login">
@@ -50,19 +59,19 @@ function Login() {
               don't have an account yet?
               <Link to="/register">click here!</Link>
             </span>
-            <button
+            <Link to="/"
               onClick={() => {
                 validationLogin({ email, password });
-              }}
-              type="submit"
+              }
+              }
               className="btn btn-custom-primary"
             >
               Enviar
-            </button>
+            </Link>
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 }
 

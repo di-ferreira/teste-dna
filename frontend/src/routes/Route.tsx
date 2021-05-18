@@ -1,29 +1,27 @@
-import React, { Component, useContext } from "react";
-import PropTypes from "prop-types";
-import { Route, Redirect } from "react-router-dom";
-
+import React, { useContext } from "react";
+import { Route, Redirect, RouteProps as RouteDOMProps } from "react-router-dom";
 import UserStore from "../stores/UserStore";
 
-function RouteWrapper({ <component: any>, isPrivate, ...rest }) {
-  const userStore = useContext(UserStore);
-  const { isLogged } = userStore;
-
-  if (!isLogged && isPrivate) {
-    return <Redirect to="/login" />;
-  }
-  if (isLogged && !isPrivate) {
-    return <Redirect to="/" />;
-  }
-
-  return <Route {...rest} render={(props) => <Component {...props} />} />;
+interface RouteProps extends RouteDOMProps {
+  isPrivate?: boolean;
+  component: React.ComponentType;
 }
 
-RouteWrapper.prototype = {
-  isPrivate: PropTypes.bool,
-  component: PropTypes.oneOfType([PropTypes.element, PropTypes.func])
-    .isRequired,
+const RouteWrapper: React.FC<RouteProps> = ({ isPrivate = false, component: Component, ...rest }) => {
+  const userStore = useContext(UserStore);
+  const { isLogged } = userStore;
+  return (
+    <Route
+      {...rest}
+      render={({ location }) => {
+        return isPrivate === isLogged ? (
+          <Component />
+        ) : (
+          <Redirect to={{ pathname: isPrivate ? '/login' : '/', state: { from: location } }} />
+        )
+      }}
+    />
+  );
 };
-
-RouteWrapper.defaultProps = { isPrivate: false };
 
 export default RouteWrapper;
