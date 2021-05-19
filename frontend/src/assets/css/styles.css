@@ -41,6 +41,14 @@ body,
   color: var(--mainColor) !important;
 }
 
+.bg-color-main {
+  background-color: var(--mainColor) !important;
+}
+
+.bg-color-danger {
+  background-color: var(--mainDanger) !important;
+}
+
 .title-custom {
   text-align: center;
   font-family: "Righteous", cursive;
