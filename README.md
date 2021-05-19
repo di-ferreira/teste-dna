@@ -79,7 +79,7 @@ Instalar as dependencies e devDependencies e "startar" o servidor de testes.
 git clone https://github.com/di-ferreira/teste-dna.git
 cd teste-dna/frontend
 yarn //ou yarn install
-yarn dev:server
+yarn start
 ```
 
 ## License
