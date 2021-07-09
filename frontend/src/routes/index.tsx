@@ -1,6 +1,6 @@
 import React from "react";
-import { BrowserRouter, Switch } from 'react-router-dom';
-import CustomRoute from './Route'
+import { BrowserRouter, Switch } from "react-router-dom";
+import CustomRoute from "./Route";
 import List from "../pages/List";
 import Login from "../pages/Login";
 import Profile from "../pages/Profile";

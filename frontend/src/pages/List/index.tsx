@@ -6,13 +6,7 @@ function List() {
   const [users, setUsers] = useState<any[]>();
 
   useEffect(() => {
-    const token = localStorage.getItem("@DNA:token");
-
-    if (token) {
-      api.defaults.headers.common["Authorization"] = "Bearer " + token;
-    }
-
-    api.get(`/users/`).then((response: { data: any }) => {
+    api.get(`/users?_embed=users_details`).then((response: { data: any }) => {
       const usersData = response.data;
       setUsers(usersData);
     });
@@ -29,13 +23,13 @@ function List() {
                 className="w-100 h-100 d-flex justify-content-end align-items-center"
               >
                 <div className="user-list-item-info d-flex justify-content-end align-items-center flex-column">
-                  <h3 className="user-list-item-name">{u.user.name}</h3>
+                  <h3 className="user-list-item-name">{u.name}</h3>
                   <p className="user-list-item-skills">Front End Developer</p>
                   <span
                     className="user-list-item-status"
-                    data-status={u.status.toLowerCase()}
+                    data-status={u.users_details[0].status?.toLowerCase()}
                   >
-                    {u.status.toUpperCase()}
+                    {u.users_details[0].status?.toUpperCase()}
                   </span>
                 </div>
               </Link>

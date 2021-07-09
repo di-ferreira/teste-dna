@@ -1,7 +1,8 @@
-import { observer } from 'mobx-react-lite';
-import { useContext, useState, useEffect } from 'react';
+import { observer } from "mobx-react-lite";
+import { useContext, useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import UserStore from "../../stores/UserStore";
+import { toast, ToastContainer } from "react-toastify";
 import { UserLogin } from "../../stores/UserStore";
 
 function Login() {
@@ -10,36 +11,43 @@ function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorLogin, setErrorLogin] = useState(false);
+  const [erro, setErro] = useState(false);
 
   const history = useHistory();
 
-  const validationLogin = async (data: UserLogin) => {
-    if (data.password !== "" || data.email !== "") {
-      setErrorLogin(false);
-      loginUser(data);
+  const validationLogin = (data: UserLogin) => {
+    if (data.password === "" || data.email === "") {
+      setErro(true);
+      console.log("Validação", true);
+      console.log("Validação error", erro);
     } else {
-      setErrorLogin(true);
-      return;
+      loginUser(data);
     }
   };
 
   useEffect(() => {
+    if (erro) {
+      toast.error("Email ou Senha vazio!", {
+        position: toast.POSITION.TOP_RIGHT,
+        bodyClassName: "bg-color-danger",
+        className: "bg-color-danger",
+      });
+      setErro(false);
+    }
+  }, [erro]);
+
+  useEffect(() => {
     if (isLogged) {
-      history.push('/')
+      history.push("/");
     }
   }, [isLogged, history]);
 
   return (
     <div className="justify-content-center align-items-center d-flex w-100 h100 bg-login">
+      <ToastContainer />
       <div className="d-flex flex-column card-login align-items-center">
         <h1 className="mt-4 title-custom">Login DNA</h1>
         <div className="px-5 mt-4 align-items-end d-flex flex-column w-90">
-          {errorLogin ? (
-            <span className="my-3">Email or password is empty!</span>
-          ) : (
-            ""
-          )}
           <input
             type="email"
             value={email}
@@ -59,11 +67,11 @@ function Login() {
               don't have an account yet?
               <Link to="/register">click here!</Link>
             </span>
-            <Link to="/"
+            <Link
+              to="/"
               onClick={() => {
                 validationLogin({ email, password });
-              }
-              }
+              }}
               className="btn btn-custom-primary"
             >
               Enviar
@@ -71,7 +79,7 @@ function Login() {
           </div>
         </div>
       </div>
-    </div >
+    </div>
   );
 }
 

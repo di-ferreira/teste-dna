@@ -12,6 +12,7 @@ interface IdParam {
 interface User {
   id: string;
   name: string;
+  avatar: string;
   birthdate: string;
   email: string;
   phone: string;
@@ -28,6 +29,7 @@ function Profile() {
   const [user, setUser] = useState<User>({
     id: "",
     name: "",
+    avatar: "",
     birthdate: "",
     email: "",
     phone: "",
@@ -37,29 +39,30 @@ function Profile() {
   });
 
   useEffect(() => {
-    const token = localStorage.getItem("@DNA:token");
+    api
+      .get(`/users/${id}?_embed=users_details`)
+      .then((response: { data: any }) => {
+        const data = response.data;
+        console.log(data.users_details[0].avatar);
+        const status = data.users_details[0].status.toLowerCase();
+        const birthdate = formatLocalDate(
+          data.users_details[0].birthdate,
+          "dd/MM/yyyy"
+        );
+        const usersData = {
+          id: data.id,
+          name: data.name,
+          avatar: data.users_details[0].avatar,
+          birthdate,
+          email: data.email,
+          phone: data.users_details[0].phone,
+          website: data.users_details[0].website,
+          address: data.users_details[0].address,
+          status,
+        };
 
-    if (token) {
-      api.defaults.headers.common["Authorization"] = "Bearer " + token;
-    }
-
-    api.get(`/users/${id}`).then((response: { data: any }) => {
-      const data = response.data;
-      const status = data.status.toLowerCase();
-      const birthdate = formatLocalDate(data.birthdate, "dd/MM/yyyy");
-      const usersData = {
-        id: data.id,
-        name: data.user.name,
-        birthdate,
-        email: data.user.email,
-        phone: data.phone,
-        website: data.website,
-        address: data.address,
-        status,
-      };
-
-      setUser(usersData);
-    });
+        setUser(usersData);
+      });
   }, [id]);
   return (
     <div className="justify-content-center align-items-center flex-column d-flex w-100 h100">
@@ -68,6 +71,9 @@ function Profile() {
         // key={user.key}
       >
         <div className="card-profile d-flex align-items-center justify-content-center">
+          <div className="profile-content-image">
+            <img src={user.avatar} alt={user.name} />
+          </div>
           <h1 className="title-custom mt-3">{user.name}</h1>
           <p>Front End Developer</p>
         </div>
@@ -91,7 +97,7 @@ function Profile() {
               {user.website}
             </li>
             <li>
-              <span>ADDRESS</span>
+              <span>Address</span>
               {user.address}
             </li>
             <li>

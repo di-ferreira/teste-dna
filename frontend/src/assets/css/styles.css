@@ -19,6 +19,8 @@ body,
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  width: 100vw;
+  height: auto;
 }
 
 .h100 {
@@ -35,6 +37,10 @@ body,
 
 .w-65 {
   width: 65% !important;
+}
+
+.pb-20 {
+  padding-bottom: 20%;
 }
 
 .text-color-main {
@@ -242,6 +248,7 @@ label.input-custom {
   display: flex;
   justify-content: space-between;
   margin: 10px 0;
+  text-align: right;
 }
 
 .card-profile-info-details span {
@@ -260,9 +267,9 @@ label.input-custom {
 
 .card-profile .profile-content-image {
   position: absolute;
-  width: 300px;
-  height: 300px;
-  top: -155px;
+  width: 200px;
+  height: 200px;
+  top: -125px;
   padding: 0;
   overflow: hidden;
   border: solid 10px var(--mainColor);
@@ -287,6 +294,44 @@ label.input-custom {
   height: auto;
   padding: 25px 5px;
   margin-bottom: 20px;
+}
+
+@media screen and (max-width: 800px) {
+  body,
+  #root {
+    padding: 0 0 5% 0;
+  }
+
+  .card-register .user-list-container {
+    padding: 0;
+  }
+  .card-profile-container {
+    width: 90%;
+    flex-direction: column;
+    margin-top: 110%;
+  }
+
+  .card-profile {
+    width: 100%;
+  }
+
+  .card-profile-info {
+    width: 100%;
+    height: fit-content;
+    margin: 0;
+  }
+
+  .card-profile-info h3 {
+    width: 100%;
+    text-align: center;
+  }
+
+  .card-profile-info-details {
+    padding: 0 10px;
+  }
+  .card-profile-info-details span {
+    margin: 0;
+  }
 }
 
 .input-custom .input-custom-file {
